@@ -37,12 +37,16 @@ client.on('interactionCreate', async interaction => {
 
 client.on('messageDelete', msg => {
     msg.deletedAt = Date.now()
-    msg.channel.latest = msg
-    console.log(msg)
+    msg.channel.latestDeleted = msg
 })
 
-client.on('messageCreate', msg => {
-    console.log(msg)
+client.on('messageUpdate', msg => {
+    msg.edited = Date.now()
+    msg.channel.latestEdited = msg
 })
+
+// client.on('messageCreate', msg => {
+//     console.log(msg)
+// })
 
 client.login(token);
